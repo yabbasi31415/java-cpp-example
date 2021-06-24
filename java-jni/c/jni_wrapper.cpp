@@ -1,6 +1,8 @@
 #include "cpplib/Calculator.h"
 #include "Calculator_jni.h"
 
+using namespace emumba;
+
 static jfieldID _get_self_id(JNIEnv *env, jobject thisObj)
 {
     static int init = 0;
