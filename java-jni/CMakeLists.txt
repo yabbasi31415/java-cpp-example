@@ -8,7 +8,7 @@ SET(JAVA_SOURCE_FILES
     cpplib/Calculator.java)
 
 # Build Java classes
-FILE(MAKE_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/java/bin")
+FILE(MAKE_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/bin")
 SET(class_files)
 FOREACH(_java_file ${JAVA_SOURCE_FILES})
     # _java_file: relative file name
@@ -17,15 +17,15 @@ FOREACH(_java_file ${JAVA_SOURCE_FILES})
            ".class" _class_file
            "${_java_file}")
     ADD_CUSTOM_COMMAND(
-        OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/java/bin/${_class_file}"
+        OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/bin/${_class_file}"
         COMMAND
             ${Java_JAVAC_EXECUTABLE}
             ${CMAKE_JAVA_COMPILE_FLAGS}
-            -sourcepath "${CMAKE_CURRENT_SOURCE_DIR}/java/src"
-            -d "${CMAKE_CURRENT_BINARY_DIR}/java/bin"
-            "${CMAKE_CURRENT_SOURCE_DIR}/java/src/${_java_file}"
-        DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/java/src/${_java_file}")
-    LIST(APPEND class_files "java/bin/${_class_file}")
+            -sourcepath "${CMAKE_CURRENT_SOURCE_DIR}/src"
+            -d "${CMAKE_CURRENT_BINARY_DIR}/bin"
+            "${CMAKE_CURRENT_SOURCE_DIR}/src/${_java_file}"
+        DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src/${_java_file}")
+    LIST(APPEND class_files "bin/${_class_file}")
 ENDFOREACH()
 ADD_CUSTOM_TARGET(JavaJNIClasses ALL DEPENDS ${class_files})
 
@@ -35,9 +35,9 @@ ADD_CUSTOM_COMMAND(
     COMMAND
         ${Java_JAVAH_EXECUTABLE}
         -o "${CMAKE_CURRENT_BINARY_DIR}/include/Calculator_jni.h"
-        -classpath "${CMAKE_CURRENT_BINARY_DIR}/java/bin"
+        -classpath "${CMAKE_CURRENT_BINARY_DIR}/bin"
         cpplib.Calculator
-    DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/java/bin/cpplib/Calculator.class")
+    DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/bin/cpplib/Calculator.class")
 ADD_CUSTOM_TARGET(JavaJNIHeaders ALL DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/include/Calculator_jni.h")
 
 # Require JNI
@@ -47,7 +47,7 @@ FIND_PACKAGE(JNI REQUIRED)
 INCLUDE_DIRECTORIES("${CPPLIB_INCLUDE_DIR}"
                     "${CMAKE_CURRENT_BINARY_DIR}/include"
                     ${JNI_INCLUDE_DIRS})
-ADD_LIBRARY(cpplib_jni SHARED c/jni_wrapper.cpp)
+ADD_LIBRARY(cpplib_jni SHARED jni_wrapper.cpp)
 SET_TARGET_PROPERTIES(
     cpplib_jni PROPERTIES
     LIBRARY_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}"
@@ -66,7 +66,7 @@ IF(BUILD_TESTS)
         NAME run-jni
         COMMAND
             "${Java_JAVA_EXECUTABLE}"
-            -cp java-jni/java/bin
+            -cp java-jni/bin
             -Djava.library.path=java-jni
             app.Main
         WORKING_DIRECTORY "${CMAKE_BINARY_DIR}")
