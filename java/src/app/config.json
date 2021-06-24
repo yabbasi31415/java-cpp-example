@@ -1,0 +1,11 @@
+{
+    "Store_in_memory": 1,
+    "Add": {
+        "Argument_1": 10,
+        "Argument_2": 15
+    },
+    "Subtract": {
+        "Argument_1": 45,
+        "Argument_2": 32
+    }
+}
