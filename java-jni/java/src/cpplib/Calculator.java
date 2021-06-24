@@ -1,4 +1,4 @@
-package edu.nyu.cpptest.cpplib;
+package cpplib;
 
 public class Calculator {
 

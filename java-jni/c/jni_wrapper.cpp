@@ -27,49 +27,49 @@ static void _set_self(JNIEnv *env, jobject thisObj, Calculator *self)
     env->SetLongField(thisObj, _get_self_id(env, thisObj), selfPtr);
 }
 
-JNIEXPORT void JNICALL Java_edu_nyu_cpptest_cpplib_Calculator_init(JNIEnv *env, jobject thisObj)
+JNIEXPORT void JNICALL Java_cpplib_Calculator_init(JNIEnv *env, jobject thisObj)
 {
     Calculator *self = new Calculator();
     _set_self(env, thisObj, self);
 }
 
-JNIEXPORT void JNICALL Java_edu_nyu_cpptest_cpplib_Calculator_add_1to_1memory(JNIEnv *env, jobject thisObj, jint x)
+JNIEXPORT void JNICALL Java_cpplib_Calculator_add_1to_1memory(JNIEnv *env, jobject thisObj, jint x)
 {
     Calculator *self = _get_self(env, thisObj);
     self->add_to_memory(x);
 }
 
-JNIEXPORT jint JNICALL Java_edu_nyu_cpptest_cpplib_Calculator_recall_1memory(JNIEnv *env, jobject thisObj)
+JNIEXPORT jint JNICALL Java_cpplib_Calculator_recall_1memory(JNIEnv *env, jobject thisObj)
 {
     Calculator *self = _get_self(env, thisObj);
     return self->recall_memory();
 }
 
-JNIEXPORT jint JNICALL Java_edu_nyu_cpptest_cpplib_Calculator_add(JNIEnv *env, jobject thisObj, jint a, jint b)
+JNIEXPORT jint JNICALL Java_cpplib_Calculator_add(JNIEnv *env, jobject thisObj, jint a, jint b)
 {
     Calculator *self = _get_self(env, thisObj);
     return self->add(a, b);
 }
 
-JNIEXPORT jint JNICALL Java_edu_nyu_cpptest_cpplib_Calculator_subtract(JNIEnv *env, jobject thisObj, jint a, jint b)
+JNIEXPORT jint JNICALL Java_cpplib_Calculator_subtract(JNIEnv *env, jobject thisObj, jint a, jint b)
 {
     Calculator *self = _get_self(env, thisObj);
     return self->subtract(a, b);
 }
 
-JNIEXPORT jdouble JNICALL Java_edu_nyu_cpptest_cpplib_Calculator_multiply(JNIEnv *env, jobject thisObj, jint a, jint b)
+JNIEXPORT jdouble JNICALL Java_cpplib_Calculator_multiply(JNIEnv *env, jobject thisObj, jint a, jint b)
 {
     Calculator *self = _get_self(env, thisObj);
     return self->multiply(a, b);
 }
 
-JNIEXPORT jdouble JNICALL Java_edu_nyu_cpptest_cpplib_Calculator_square(JNIEnv *env, jobject thisObj, jint a)
+JNIEXPORT jdouble JNICALL Java_cpplib_Calculator_square(JNIEnv *env, jobject thisObj, jint a)
 {
     Calculator *self = _get_self(env, thisObj);
     return self->square(a);
 }
 
-JNIEXPORT void JNICALL Java_edu_nyu_cpptest_cpplib_Calculator_finalize(JNIEnv *env, jobject thisObj)
+JNIEXPORT void JNICALL Java_cpplib_Calculator_finalize(JNIEnv *env, jobject thisObj)
 {
     Calculator *self = _get_self(env, thisObj);
     if (self != NULL)

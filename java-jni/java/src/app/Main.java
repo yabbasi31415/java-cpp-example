@@ -1,6 +1,6 @@
-package edu.nyu.cpptest.app;
+package app;
 
-import edu.nyu.cpptest.cpplib.Calculator;
+import cpplib.Calculator;
 
 public class Main {
 

@@ -4,8 +4,8 @@ INCLUDE(UseJava)
 SET(CMAKE_JAVA_COMPILE_FLAGS "-source" "1.6" "-target" "1.6")
 
 SET(JAVA_SOURCE_FILES
-    edu/nyu/cpptest/app/Main.java
-    edu/nyu/cpptest/cpplib/Calculator.java)
+    app/Main.java
+    cpplib/Calculator.java)
 
 # Build Java classes
 FILE(MAKE_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/java/bin")
@@ -36,8 +36,8 @@ ADD_CUSTOM_COMMAND(
         ${Java_JAVAH_EXECUTABLE}
         -o "${CMAKE_CURRENT_BINARY_DIR}/include/Calculator_jni.h"
         -classpath "${CMAKE_CURRENT_BINARY_DIR}/java/bin"
-        edu.nyu.cpptest.cpplib.Calculator
-    DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/java/bin/edu/nyu/cpptest/cpplib/Calculator.class")
+        cpplib.Calculator
+    DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/java/bin/cpplib/Calculator.class")
 ADD_CUSTOM_TARGET(JavaJNIHeaders ALL DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/include/Calculator_jni.h")
 
 # Require JNI
@@ -68,6 +68,6 @@ IF(BUILD_TESTS)
             "${Java_JAVA_EXECUTABLE}"
             -cp java-jni/java/bin
             -Djava.library.path=java-jni
-            edu.nyu.cpptest.app.Main
+            app.Main
         WORKING_DIRECTORY "${CMAKE_BINARY_DIR}")
 ENDIF()
