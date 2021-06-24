@@ -1,4 +1,4 @@
-#include "cpplib/Calculator.h"
+#include "Calculator.h"
 #include "Calculator_jni.h"
 
 using namespace emumba;
