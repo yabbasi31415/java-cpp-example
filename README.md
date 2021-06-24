@@ -29,3 +29,7 @@ JNI
 ---
 
 This examples uses JNI directly, without auto-generation. The `MyClass` class in Java code just declares its methods as being "native", they are provided by the dynamic library.
+
+### To run the executable
+
+$ `java -cp java-jni/java/bin -Djava.library.path=java-jni edu.nyu.cpptest.app.Main`

@@ -9,6 +9,7 @@ public class Main {
 		MyClass counter = new MyClass(3);
 		counter.increment();
 		counter.increment();
+		counter.increment();
 		System.out.println(counter.getValue());
 	}
 	
