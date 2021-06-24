@@ -47,7 +47,7 @@ FIND_PACKAGE(JNI REQUIRED)
 INCLUDE_DIRECTORIES("${CPPLIB_INCLUDE_DIR}"
                     "${CMAKE_CURRENT_BINARY_DIR}/include"
                     ${JNI_INCLUDE_DIRS})
-ADD_LIBRARY(cpplib_jni SHARED jni_wrapper.cpp)
+ADD_LIBRARY(cpplib_jni SHARED calculator_wrapper.cpp)
 SET_TARGET_PROPERTIES(
     cpplib_jni PROPERTIES
     LIBRARY_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}"
