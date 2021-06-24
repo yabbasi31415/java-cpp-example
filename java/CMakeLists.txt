@@ -66,8 +66,8 @@ IF(BUILD_TESTS)
         NAME run-jni
         COMMAND
             "${Java_JAVA_EXECUTABLE}"
-            -cp java-jni/bin
-            -Djava.library.path=java-jni
+            -cp java/bin
+            -Djava.library.path=java
             app.Main
         WORKING_DIRECTORY "${CMAKE_BINARY_DIR}")
 ENDIF()
