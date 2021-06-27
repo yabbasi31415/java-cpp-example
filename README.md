@@ -18,4 +18,15 @@ This examples uses JNI directly, without auto-generation. The `Calculator` class
 
 ### To run the executable
 
-$ `java -cp java/bin -Djava.library.path=java app.Main`
+<!-- $ `java -cp java/bin -Djava.library.path=java app.Main` -->
+**Compile:** 
+
+    $ mkdir build && cd build
+
+    $ cmake ..
+
+    $ make
+
+**Run: (in build directory)** 
+
+    $ `java -cp java/bin:../gson-2.8.7.jar -Djava.library.path=java app.Main`

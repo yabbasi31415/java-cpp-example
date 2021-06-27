@@ -7,6 +7,15 @@ SET(JAVA_SOURCE_FILES
     app/Main.java
     cpplib/Calculator.java)
 
+
+# Gson jar
+SET(GSON_JAR "${CMAKE_SOURCE_DIR}/gson-2.8.7.jar"
+CACHE STRING "Location of gson.jar")
+MESSAGE(${GSON_JAR})
+IF(NOT EXISTS "${GSON_JAR}")
+MESSAGE(FATAL_ERROR "GSON_JAR doesn't point to an existing file; please download the JAR or set the variable to the correct location")
+ENDIF()
+
 # Build Java classes
 FILE(MAKE_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/bin")
 SET(class_files)
@@ -21,6 +30,7 @@ FOREACH(_java_file ${JAVA_SOURCE_FILES})
         COMMAND
             ${Java_JAVAC_EXECUTABLE}
             ${CMAKE_JAVA_COMPILE_FLAGS}
+            -classpath "${GSON_JAR}"
             -sourcepath "${CMAKE_CURRENT_SOURCE_DIR}/src"
             -d "${CMAKE_CURRENT_BINARY_DIR}/bin"
             "${CMAKE_CURRENT_SOURCE_DIR}/src/${_java_file}"
