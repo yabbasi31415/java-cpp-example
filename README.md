@@ -11,11 +11,13 @@ CMake is used to build this, since locating the dependencies got outside the ran
 
 Three different wrappers are used, documented below. Each one achieves the same goal, which is using [this C++ class](cpplib/src/Calculator.cpp) from [Java code](java-jni/java/src/app/Main.java).
 
-JNI
----
+SWIG
+----
 
-This examples uses JNI directly, without auto-generation. The `Calculator` class in Java code just declares its methods as being "native", they are provided by the dynamic library.
+This needs the SWIG tool: http://www.swig.org/
+
+SWIG parses the C++ header file and generates both the C++ JNI code and the Java native and helper classes.
 
 ### To run the executable
 
-$ `java -cp java-jni/java/bin -Djava.library.path=java-jni app.Main`
+$ `java -cp java-swig/java/bin -Djava.library.path=java-swig edu.nyu.cpptest.app.Main`

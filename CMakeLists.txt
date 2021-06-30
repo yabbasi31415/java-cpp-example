@@ -11,4 +11,4 @@ ENDIF()
 
 # Recursively build components
 ADD_SUBDIRECTORY(cpplib)
-ADD_SUBDIRECTORY(java-jni)
+ADD_SUBDIRECTORY(java-swig)
